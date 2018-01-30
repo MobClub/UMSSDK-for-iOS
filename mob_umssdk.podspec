@@ -12,7 +12,7 @@ s.libraries           = "z", "stdc++", "icucore"
 s.default_subspecs    = 'UMSSDK'
 s.vendored_frameworks = 'SDK/UMSSDK/UMSSDK.framework'
 s.resources = 'JiMu.bundle'
-s.dependency 'MOBFoundation' , "JiMu" , "mob_smssdk" , "mob_sharesdk"
+s.dependency 'MOBFoundation' , 'JiMu' , 'mob_smssdk' , 'mob_sharesdk'
 
 s.subspec 'UMSSDK' do |sp|
 sp.vendored_frameworks = 'SDK/UMSSDK/UMSSDK.framework'
@@ -26,7 +26,7 @@ sp.vendored_frameworks = 'SDK/UMSSDK/UMSSDKUI.framework'
 sp.resources           = 'SDK/UMSSDK/UMSSDKUI.bundle'
 sp.libraries           = 'icucore', 'z', 'stdc++'
 sp.frameworks          = "CoreLocation"
-sp.dependency "MJRefresh"
+sp.dependency 'MJRefresh'
 end
 
 end
