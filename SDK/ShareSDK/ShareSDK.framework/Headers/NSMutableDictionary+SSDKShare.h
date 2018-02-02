@@ -44,11 +44,11 @@
 /**
  新浪微博应用内分享 指定使用api进行分享 v4.0.1
  */
-- (void)SSDKEnableSinaWeiboAPIShare;
+- (void)SSDKEnableSinaWeiboAPIShare __deprecated_msg("discard form v4.0.5");
 
 
 /**
- 使用第三方应用插件进行分享 (暂只支持微信 QQ TIM)
+ 使用第三方应用插件进行分享 (暂只支持微信 QQ TIM) iOS11 不可用
     微信   支持  本地图片(1-9张) 本地视频(SSDKContentTypeFile) 本地音频(SSDKContentTypeFile) 链接(只有链接有作用标题 说明设置无效)
  QQ&TIM   支持  本地图片(1-9张) 本地视频(SSDKContentTypeFile) 本地音频(SSDKContentTypeFile) 链接(只有链接有作用标题 说明设置无效)
     QQiPad版本不支持
@@ -90,7 +90,35 @@
                                    latitude:(double)latitude
                                   longitude:(double)longitude
                                    objectID:(NSString *)objectID
+                                       type:(SSDKContentType)type __deprecated_msg("discard form v4.0.4");
+
+/*
+ 设置新浪微博分享参数
+ 
+ @param text      文本
+ @param title     标题
+ @param images    图片集合,传入参数可以为单张图片信息，也可以为一个NSArray，数组元素可以为UIImage、NSString（图片路径）、NSURL（图片路径）、SSDKImage。如: @"http://www.mob.com/images/logo_black.png" 或 @[@"http://www.mob.com/images/logo_black.png"]
+ @param video     分享视频, 本地路径。
+ @param url       分享链接
+ @param latitude  纬度
+ @param longitude 经度
+ @param objectID  对象ID，标识系统内内容唯一性，应传入系统中分享内容的唯一标识，没有时可以传入nil
+ @param isShareToStory 是否分享到故事
+ @param type      分享类型，仅支持Text、Image、WebPage 类型
+ 设置 SSDKEnableSinaWeiboAPIShare 使用API进行分享 但text中需要附 安全域 安全域在新浪微博开放平台设置
+ @param dataDictionary 数据存储字典 如果传入nil将新建
+ */
+- (void)SSDKSetupSinaWeiboShareParamsByText:(NSString *)text
+                                      title:(NSString *)title
+                                     images:(id)images
+                                      video:(NSString *)video
+                                        url:(NSURL *)url
+                                   latitude:(double)latitude
+                                  longitude:(double)longitude
+                                   objectID:(NSString *)objectID
+                             isShareToStory:(BOOL)shareToStory
                                        type:(SSDKContentType)type;
+
 
 /**
  *  设置腾讯微博分享参数
@@ -223,7 +251,30 @@
                                 path:(NSString *)path
                           thumbImage:(id)thumbImage
                             userName:(NSString *)userName
-                  forPlatformSubType:(SSDKPlatformType)platformSubType;
+                  forPlatformSubType:(SSDKPlatformType)platformSubType __deprecated_msg("discard form v4.0.7");
+
+/**
+ v4.0.7 为微信小程序分享增加
+ 
+ @param title 标题
+ @param description 详细说明
+ @param webpageUrl 网址（6.5.6以下版本微信会自动转化为分享链接 必填）
+ @param path 跳转到页面路径
+ @param thumbImage 缩略图 （必填）
+ @param userName 小程序的userName （必填）
+ @param withShareTicket 是否使用带 shareTicket 的转发
+ @param type 分享小程序的版本（0-正式，1-开发，2-体验）
+ @param platformSubType 分享自平台 微信小程序暂只支持 SSDKPlatformSubTypeWechatSession（微信好友分享)
+ */
+- (void)SSDKSetupWeChatMiniProgramShareParamsByTitle:(NSString *)title
+                                         description:(NSString *)description
+                                          webpageUrl:(NSURL *)webpageUrl
+                                                path:(NSString *)path
+                                          thumbImage:(id)thumbImage
+                                            userName:(NSString *)userName
+                                     withShareTicket:(BOOL)withShareTicket
+                                     miniProgramType:(NSUInteger)type
+                                  forPlatformSubType:(SSDKPlatformType)platformSubType;
 
 
 /**
@@ -328,6 +379,7 @@
  
  *  @param image            图片，可以为UIImage、NSString（图片路径）、NSURL（图片路径）、SSDKImage
                             分享类型为Image类型时,若使用客户端分享,可传入 单张/多张 的 本地/网络 图片;如果不使用客户端分享,仅支持单张的本地/网络图片
+                            分享类型为App（应用邀请）时 只支持网络图片链接
  *【Facebook通过客户端分享图片,可不需依赖任何权限;否则需要申请publish_actions权限】*
                             分享类型为WebPage类型时,无论是否使用客户端,仅支持单张的网络图片
  
@@ -347,7 +399,7 @@
  
  *  @param type             分享类型
                             当使用客户端分享时,支持Image、WebPage,Video类型
-                            当不适用客户端分享是,支持Text、Image、WebPage类型
+                            当不适用客户端分享是,支持Text、Image、WebPage、App(应用邀请)类型
  */
 - (void)SSDKSetupFacebookParamsByText:(NSString *)text
                                 image:(id)image
@@ -640,21 +692,6 @@
                          platformType:(SSDKPlatformType)platformType;
 
 /**
- *  设置支付宝好友分享参数
- *
- *  @param text  分享文本
- *  @param image 分享图片，可以为UIImage、NSString（图片路径）、NSURL（图片路径）、SSDKImage。
- *  @param title 标题
- *  @param url   分享链接
- *  @param type  分享类型，仅支持Text、Image、WebPage
- */
-- (void)SSDKSetupAliPaySocialParamsByText:(NSString *)text
-                                    image:(id)image
-                                    title:(NSString *)title
-                                      url:(NSURL *)url
-                                     type:(SSDKContentType)type __deprecated_msg("use [SSDKSetupAliPaySocialParamsByText:image:title:url:type:platformType:] method instead");
-
-/**
  *  设置支付宝分享参数
  *
  *  @param text  分享文本
@@ -662,18 +699,18 @@
  *  @param title 标题
  *  @param url   分享链接
  *  @param type  分享类型，仅支持Text、Image、WebPage
- *  @param platformType 分享平台类型，仅支持输入SSDKPlatformTypeAliPaySocial和SSDKPlatformTypeAliPaySocialTimeline
+ *  @param platformType 分享平台类型，仅支持输入SSDKPlatformTypeAliSocial和SSDKPlatformTypeAliSocialTimeline
  *  分享类型，平台支持情况如下：
- *  SSDKPlatformTypeAliPaySocial(支付宝好友):支持Text、Image、WebPage
- *  SSDKPlatformTypeAliPaySocialTimeline(支付宝朋友圈):支持Image、WebPage
+ *  SSDKPlatformTypeAliSocial(支付宝好友):支持Text、Image、WebPage
+ *  SSDKPlatformTypeAliSocialTimeline(支付宝朋友圈):支持Image、WebPage
  *
  */
-- (void)SSDKSetupAliPaySocialParamsByText:(NSString *)text
-                                    image:(id)image
-                                    title:(NSString *)title
-                                      url:(NSURL *)url
-                                     type:(SSDKContentType)type
-                             platformType:(SSDKPlatformType)platformType;
+- (void)SSDKSetupAliSocialParamsByText:(NSString *)text
+                                image:(id)image
+                                title:(NSString *)title
+                                  url:(NSURL *)url
+                                 type:(SSDKContentType)type
+                         platformType:(SSDKPlatformType)platformType;
 
 /**
  *  设置Pinterest分享参数

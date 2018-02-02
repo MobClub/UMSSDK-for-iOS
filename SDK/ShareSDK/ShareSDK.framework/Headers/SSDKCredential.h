@@ -11,7 +11,8 @@
 /**
  *  授权类型
  */
-typedef NS_ENUM(NSUInteger, SSDKCredentialType){
+typedef NS_ENUM(NSUInteger, SSDKCredentialType)
+{
     /**
      *  未知
      */

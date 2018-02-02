@@ -60,4 +60,10 @@
  */
 + (void)fansListQueryHandler:(void (^) (JIMUQuery *query))queryHandler;
 
+/**
+ 购买vip订单列表查询
+ 
+ @return 订单列表查询结果
+ */
++ (void)ordersQueryHandler:(void (^) (JIMUQuery *query))queryHandler;
 @end

@@ -16,5 +16,6 @@
 + (instancetype)sharedInstance;
 - (void)setImage:(UIImage *)image forKey:(NSString *)key;
 - (UIImage *)imageForKey:(NSString *)key;
++ (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
 
 @end

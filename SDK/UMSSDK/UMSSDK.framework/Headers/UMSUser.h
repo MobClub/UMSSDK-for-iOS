@@ -15,7 +15,7 @@
 #import <JiMu/JIMULocationConstant.h>
 #import "UMSTypeDefine.h"
 #import "UMSAvatar.h"
-#import <MOBFoundation/IMOBFUser.h>
+#import "IMOBFUser.h"
 #import "UMSUserCustomFields.h"
 #import <CoreLocation/CoreLocation.h>
 

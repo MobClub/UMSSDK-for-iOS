@@ -4,7 +4,7 @@
 //
 //  Created by 刘靖煌 on 17/2/23.
 //  Copyright © 2017年 mob.com. All rights reserved.
-//
+//  P
 
 #import <Foundation/Foundation.h>
 #import "UMSTypeDefine.h"
@@ -14,7 +14,7 @@
 @interface UMSSDK : NSObject
 
 /**
- 获取注册短信验证码
+ 获取注册短信验证码：仅用于注册时获取验证吗（如果是找回密码时需要时获取验证码，请使用获取“重置密码的短信验证码”接口）
 
  @param phone    手机号
  @param areaCode 电话地区号
@@ -23,6 +23,8 @@
 + (void)getRegisterVerificationCodeWithPhone:(NSString *)phone
                                     areaCode:(NSString *)areaCode
                                       result:(void (^) (NSError *error))handler;
+
+//typedef void(^UMSRegisterResult) (UMSUser *user, NSError *error);
 /**
  用户注册
 
@@ -50,6 +52,30 @@
               areaCode:(NSString *)areaCode
               password:(NSString *)password
                 result:(UMSLoginResult)handler;
+
+/**
+ 获取登录短信验证码：仅用于登录时获取验证吗
+ 
+ @param phone    手机号
+ @param areaCode 电话地区号
+ @param handler  请求结果
+ */
++ (void)getLoginVerificationCodeWithPhone:(NSString *)phone
+                                 areaCode:(NSString *)areaCode
+                                   result:(void (^) (NSError *error))handler;
+
+/**
+ 手机号+验证码方式登录
+
+ @param phone 手机号
+ @param code 短信验证码
+ @param handler 登录结果
+ */
++ (void)loginWithPhone:(NSString *)phone
+              areaCode:(NSString *)areaCode
+               smsCode:(NSString *)code
+                result:(UMSLoginResult)handler;
+
 /**
  第三方登录
 
@@ -176,5 +202,19 @@
  @return 当前用户
  */
 + (UMSUser *)currentUser;
+
+/**
+ 是否展示VIP模块信息
+
+ @return YES-展示 NO-不展示
+ */
++ (BOOL)isShowVipModule;
+
+/**
+ 是否展示VIP中的免费领取
+
+ @return YES-展示 NO-不展示
+ */
++ (BOOL)isShowFreeVipProduct;
 
 @end

@@ -47,6 +47,8 @@
 			</array>
 		</dict>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>vk5312801</string>
@@ -63,6 +65,8 @@
 				<string>tencent100371282</string>
 				<string>fb1201984966578499</string>
 				<string>wb568898243</string>
+				<string>wxc551587ec5a55ceb</string>
+				<string>ap2017073107971452</string>
 			</array>
 		</dict>
 	</array>
@@ -124,6 +128,8 @@
 		<string>sinaweibosso</string>
 		<string>wechat</string>
 		<string>weixin</string>
+		<string>ap2017073107971452</string>
+		<string>wxc551587ec5a55ceb</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

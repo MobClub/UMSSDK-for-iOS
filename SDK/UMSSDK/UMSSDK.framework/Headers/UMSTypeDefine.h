@@ -8,10 +8,14 @@
 
 #ifndef UMSTypeDefine_h
 #define UMSTypeDefine_h
+#include <Foundation/Foundation.h>
 
 @class UMSUser;
 @class UMSBindingData;
 @class UMSApplyAddFriendData;
+@class UMSVip;
+@class UMSVipProduct;
+@class UMSVipOrder;
 
 /**
  *  登录回调
@@ -199,5 +203,37 @@ typedef NS_ENUM(NSUInteger, UMSDealWithRequestStatus){
      */
     UMSDealWithRequestStatusRefuse = 3,
 };
+
+/**
+ *  获取用户订购vip列表回调
+ */
+typedef void(^UMSGetVipInfoResult) (NSArray<UMSVip *> *vipList, NSError *error);
+
+/**
+ *  获取可订购vip类型列表回调
+ */
+typedef void(^UMSGetVipProductListResult) (NSMutableArray<UMSVipProduct *> *vipProductList, NSError *error);
+
+/**
+ *   创建订单(购买会员)回调
+ */
+typedef void(^UMSCreateVipOrderResult) (NSString *orderId, NSError *error);
+
+/**
+ *   订单支付结果回调 
+ *   channel 支付渠道 22-微信 50-支付宝
+ *   payStatus 支付结果 1-Success 2-Fail, 3-Canncel 4-Unknown
+ */
+typedef void(^UMSPayOrderResult) (NSUInteger channel, NSUInteger payStatus, NSError *error);
+
+/**
+ *   交易记录回调
+ */
+typedef void(^UMSOrderRecordResult) (NSArray<UMSVipOrder *> *vipOrderList, NSError *error);
+
+/**
+ *   交易记录回调
+ */
+typedef void(^UMSOrderInfoResult) (UMSVipOrder *order, NSError *error);
 
 #endif /* UMSTypeDefine_h */

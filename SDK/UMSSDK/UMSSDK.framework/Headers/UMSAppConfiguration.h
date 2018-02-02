@@ -48,7 +48,12 @@
 /**
  *  视图配置
  */
-@property (nonatomic, strong) NSArray *viewConfs;
+@property (nonatomic, strong) NSArray<NSDictionary *> *viewConfs;
+
+/**
+ *  VIP配置
+ */
+@property (nonatomic, strong) NSArray<NSDictionary *> *vipSwitchList;
 
 /**
  *  字典转模型
