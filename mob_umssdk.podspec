@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 	s.name                = "mob_umssdk"
-	s.version             = "1.0.0"
+	s.version             = "1.2.0"
 	s.summary             = 'mob.com的用户管理系统'
 	s.license             = 'Copyright © 2012-2018 mob.com'
 	s.author              = { "MobProducts" => "mobproducts@163.com" }
