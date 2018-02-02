@@ -12,7 +12,11 @@ Pod::Spec.new do |s|
 	s.default_subspecs    = 'Core'
 	# s.vendored_frameworks = 'SDK/UMSSDK/UMSSDK.framework'
 	# s.resources = 'JiMu.bundle'
-	s.dependency 'MOBFoundation' , 'JiMu' , 'mob_smssdk' , 'mob_sharesdk', 'mob_paysdk'
+	s.dependency 'MOBFoundation' 
+	s.dependency 'JiMu' 
+	s.dependency 'mob_smssdk' 
+	s.dependency 'mob_sharesdk'
+	s.dependency 'mob_paysdk'
 
 	s.subspec 'Core' do |sp|
 		sp.vendored_frameworks = 'SDK/UMSSDK/UMSSDK.framework'
@@ -26,6 +30,7 @@ Pod::Spec.new do |s|
 		sp.resources           = 'SDK/UMSSDK/UMSSDKUI.bundle'
 		# sp.libraries           = 'icucore', 'z', 'stdc++'
 		# sp.frameworks          = "CoreLocation"
-		sp.dependency 'MJRefresh', 'mob_umssdk/Core'
+		sp.dependency 'MJRefresh'
+		sp.dependency 'mob_umssdk/Core'
 	end
 end
